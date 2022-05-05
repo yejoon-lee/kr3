@@ -9,13 +9,13 @@ Korean sentiment classification dataset
 [Blog Post](https://blog.diyaml.com/)  
 [Hugging Face Hub](https://huggingface.co/datasets/Wittgensteinian/KR3)  
 [Kaggle Dataset](https://www.kaggle.com/ninetyninenewton/kr3-korean-restaurant-reviews-with-ratings)  
-[Gitlab (original repo)](https://gitlab.com/Wittgensteinian/kr3)
+[Gitlab (original repo)](https://gitlab.com/Wittgensteinian/kr3): See the full repo and git log in here.
 
 ## Dataset Description
 
 ### Where to download the dataset
 Due to file size limit, we couldn't include the dataset in GitHub repo.  
-Please check the above links to access the dataset.
+Please check the links above to access the dataset.
 
 ### Files
 
@@ -97,7 +97,7 @@ Simple tutorial. See `tutorial.ipynb`.
 
 As the size of pre-trained model grows exponentially, it's ineffcient or nearly impossible to store all the fine-tuned models. Parameter-efficient tuning aims to acheive adaption only with small modules. We used [adapter](https://www.semanticscholar.org/paper/Parameter-Efficient-Transfer-Learning-for-NLP-Houlsby-Giurgiu/29ddc1f43f28af7c846515e32cc167bc66886d0c) and [LoRA](<https://www.semanticscholar.org/paper/LoRA%3A-Low-Rank-Adaptation-of-Large-Language-Models-Hu-Shen/a8ca46b171467ceb2d7652fbfb67fe701ad86092>). See more in `/yejoon`. See [W&B dashboard](https://wandb.ai/wittgensteinian/Parameter-Efficient-Tuning).
 
-![num-params_v._f1](./yejoon/num-params_v._f1.png)
+![num-params_v._f1](./yejoon/results/num-params_v._f1.png)
 
 ## License & Legal Issues
 
