@@ -93,11 +93,16 @@ Read [README](./data/README.md) in `/data`.
 
 Simple tutorial. See `tutorial.ipynb`.
 
-### Parameter-efficient Tuning
+### Parameter-efficient Transfer Learning
 
-As the size of pre-trained model grows exponentially, it's ineffcient or nearly impossible to store all the fine-tuned models. Parameter-efficient tuning aims to acheive adaption only with small modules. We used [adapter](https://www.semanticscholar.org/paper/Parameter-Efficient-Transfer-Learning-for-NLP-Houlsby-Giurgiu/29ddc1f43f28af7c846515e32cc167bc66886d0c) and [LoRA](<https://www.semanticscholar.org/paper/LoRA%3A-Low-Rank-Adaptation-of-Large-Language-Models-Hu-Shen/a8ca46b171467ceb2d7652fbfb67fe701ad86092>). See more in `/yejoon`. See [W&B dashboard](https://wandb.ai/wittgensteinian/Parameter-Efficient-Tuning).
+As the size of pre-trained model grows exponentially, it's ineffcient or nearly impossible to store all the fine-tuned models. Parameter-efficient transfer learning, or parameter-efficient tuning, aims to acheive adaption only with small modules. We used [mulitilingual 178M BERT-base](https://huggingface.co/bert-base-multilingual-cased) as pre-trained model. We used [adapter](https://adapterhub.ml/) [*(Houlsby et al., 2019)*](https://www.semanticscholar.org/paper/Parameter-Efficient-Transfer-Learning-for-NLP-Houlsby-Giurgiu/29ddc1f43f28af7c846515e32cc167bc66886d0c) and [LoRA](https://github.com/microsoft/lora) [*(Hu et al., 2022)*](<https://www.semanticscholar.org/paper/LoRA%3A-Low-Rank-Adaptation-of-Large-Language-Models-Hu-Shen/a8ca46b171467ceb2d7652fbfb67fe701ad86092>) as transfer learning methods. See the code in `/yejoon`. See [W&B dashboard](https://wandb.ai/wittgensteinian/Parameter-Efficient-Tuning) for training records and model weights.
 
-![num-params_v._f1](./yejoon/results/num-params_v._f1.png)
+![num-params_v._f1](./yejoon/results/num-params_v._f1.png)  
+- Compared to the best run using fine-tuning (w/freeze), these methods reduce the number of params by ***0.9% ~ 0.06%*** while maintaining the performance within ***99.7% ~ 96.4%***.
+- We were *able to reconfirm* the result given from table 2 in *Houlsby et al., 2019*. For simple text classification task, BERT-base with some of the layers freeezed was better than full fine-tuning. Adapters can reach on-par performance with full fine-tuning.
+- We were *not able to reconfirm* the result given from table 2 in *Hu et al., 2022*, where LoRA outperformed full fine-tuning and adapter for SST-2 (closest to our task among GLUE). However, note that *Hu et al., 2022* used RoBERTA-base, while we used BERT-base.
+
+> By the way, if you are interested in this topic, [*He et al., 2022*](https://www.semanticscholar.org/paper/Towards-a-Unified-View-of-Parameter-Efficient-He-Zhou/43a87867fe6bf4eb920f97fc753be4b727308923) is a must-read paper and even a good starting place for the topic.
 
 ## License & Legal Issues
 
