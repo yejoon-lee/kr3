@@ -35,7 +35,7 @@ def create_examples_from_document(document, doc_index, block_size, tokenizer, sh
     if random.random() < short_seq_probability:
         target_seq_length = random.randint(2, max_num_tokens)
 
-    current_chunk = []  # a buffer stored current working segments
+    current_chunk = []
     current_length = 0
     i = 0
     while i < len(document):
@@ -57,26 +57,19 @@ def create_examples_from_document(document, doc_index, block_size, tokenizer, sh
                     is_random_next = True
                     target_b_length = target_seq_length - len(tokens_a)
 
-                    # This should rarely go for more than one iteration for large
-                    # corpora. However, just to be careful, we try to make sure that
-                    # the random document is not the same as the document
-                    # we're processing.
                     for _ in range(10):
                         random_document_index = random.randint(0, len(documents) - 1)
                         if random_document_index != doc_index:
                             break
-                    # 여기서 랜덤하게 선택합니다 :-)
                     random_document = documents[random_document_index]
                     random_start = random.randint(0, len(random_document) - 1)
                     for j in range(random_start, len(random_document)):
                         tokens_b.extend(random_document[j])
                         if len(tokens_b) >= target_b_length:
                             break
-                    # We didn't actually use these segments so we "put them back" so
-                    # they don't go to waste.
+
                     num_unused_segments = len(current_chunk) - a_end
                     i -= num_unused_segments
-                # Actual next
                 else:
                     is_random_next = False
                     for j in range(a_end, len(current_chunk)):
@@ -90,8 +83,6 @@ def create_examples_from_document(document, doc_index, block_size, tokenizer, sh
                             break
                         trunc_tokens = tokens_a if len(tokens_a) > len(tokens_b) else tokens_b
                         assert len(trunc_tokens) >= 1
-                        # We want to sometimes truncate from the front and sometimes from the
-                        # back to add more randomness and avoid biases.
                         if random.random() < 0.5:
                             del trunc_tokens[0]
                         else:
@@ -102,9 +93,7 @@ def create_examples_from_document(document, doc_index, block_size, tokenizer, sh
                 assert len(tokens_a) >= 1
                 assert len(tokens_b) >= 1
 
-                # add special tokens
                 input_ids = tokenizer.build_inputs_with_special_tokens(tokens_a, tokens_b)
-                # add token type ids, 0 for sentence a, 1 for sentence b
                 token_type_ids = tokenizer.create_token_type_ids_from_sequences(tokens_a, tokens_b)
                 
                 example = {

@@ -104,6 +104,10 @@ As the size of pre-trained model grows exponentially, it's ineffcient or nearly 
 
 > By the way, if you are interested in this topic, [*He et al., 2022*](https://www.semanticscholar.org/paper/Towards-a-Unified-View-of-Parameter-Efficient-He-Zhou/43a87867fe6bf4eb920f97fc753be4b727308923) is a must-read paper and even a good starting place for the topic.
 
+### Task Adaptive PreTraining
+To utilize unlabeled data, i.e. ambiguous data, we followed by [Don't Stop Pretraining](https://www.semanticscholar.org/paper/Don%E2%80%99t-Stop-Pretraining%3A-Adapt-Language-Models-to-Gururangan-Marasovi%C4%87/e816f788767eec6a8ef0ea9eddd0e902435d4271) and perform adaptive pretrain on [mulitilingual 178M BERT-base](https://huggingface.co/bert-base-multilingual-cased). The details and implementations are in `/dongin`.
+
+
 ## License & Legal Issues
 
 ### License
