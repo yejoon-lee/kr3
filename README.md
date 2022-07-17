@@ -6,7 +6,7 @@ Korean sentiment classification dataset
 - Language: Korean-centric
 
 🔍 See More  
-[Blog Post](https://blog.diyaml.com/)  
+[Blog Post in Korean](https://blog.diyaml.com/teampost/KR3-Korean-Sentiment-Classification-Dataset-for-the-era-of-large-scale-language-models/)  
 [Hugging Face Hub](https://huggingface.co/datasets/Wittgensteinian/KR3)  
 [Kaggle Dataset](https://www.kaggle.com/ninetyninenewton/kr3-korean-restaurant-reviews-with-ratings)  
 [Gitlab (original repo)](https://gitlab.com/Wittgensteinian/kr3): See the full repo and git log in here.
